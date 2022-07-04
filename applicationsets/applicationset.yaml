@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: dban
+spec:
+  generators:
+    - git:
+        repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
+        revision: config
+        files:
+          - path: "environments/**/config.json"
+  template:
+    metadata:
+      name: '{{environment.id}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
+        targetRevision: config
+        path: 'environments/{{environment.id}}/charts'
+        helm:
+          valueFiles:
+            - values.{{environment.id}}.yaml
+      destination:
+        server: '{{k8s_cluster.address}}'
+        namespace: '{{k8s_cluster.namespace}}'
+      syncPolicy:
+        automated: {}
