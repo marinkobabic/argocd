@@ -8,21 +8,24 @@ spec:
         repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
         revision: config
         files:
-          - path: "environments/**/config.json"
+          - path: "environments/**/config.yaml"
   template:
     metadata:
-      name: '{{environment.id}}'
+      name: '{{path[3]}}'
     spec:
-      project: default
+      project: dban
       source:
         repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
-        targetRevision: config
-        path: 'environments/{{environment.id}}/charts'
+        targetRevision: HEAD
+        path: 'charts/{{version}}/path[3]'
         helm:
           valueFiles:
-            - values.{{environment.id}}.yaml
+            - values.yaml
+            - environments/{{path[0]}}/values.yaml
+            - environments/{{path[0]}}/{{path[1]}}/values.yaml
+            - environments/{{path[0]}}/{{path[1]}}/{{path[2]}}/values.yaml
       destination:
-        server: '{{k8s_cluster.address}}'
-        namespace: '{{k8s_cluster.namespace}}'
+        server: '{{path[1]}}'
+        namespace: '{{path[2]}}'
       syncPolicy:
         automated: {}
