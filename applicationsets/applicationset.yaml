@@ -16,7 +16,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/marinkobabic/argocd.git
-        targetRevision: HEAD
+        targetRevision: master
         path: 'charts/{{version}}/path[3]'
         helm:
           valueFiles:
