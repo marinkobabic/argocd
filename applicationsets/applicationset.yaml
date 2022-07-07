@@ -11,13 +11,13 @@ spec:
           - path: "environments/**/config.yaml"
   template:
     metadata:
-      name: '{{path[2]-path[3]}}'
+      name: "{{path[2]}}-{{path[3]}}"
     spec:
       project: default
       source:
         repoURL: https://github.com/marinkobabic/argocd.git
         targetRevision: HEAD
-        path: 'charts/{{version}}/path[3]'
+        path: 'charts/{{version}}/{{path[3]}}'
         helm:
           valueFiles:
             - values.yaml
