@@ -22,6 +22,9 @@ spec:
           ignoreMissingValueFiles: true
           valueFiles:
             - values.yaml
+            - environments/{{path[0]}}/values.yaml
+            - environments/{{path[0]}}/{{path[1]}}/values.yaml
+            - environments/{{path[0]}}/{{path[1]}}/{{path[2]}}/values.yaml
       destination:
         name: '{{path[1]}}'
         namespace: '{{path[2]}}'
