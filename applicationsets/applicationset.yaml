@@ -11,7 +11,7 @@ spec:
           - path: "environments/**/config.yaml"
   template:
     metadata:
-      name: '{{path[3]}}'
+      name: '{{path[2]-path[3]}}'
     spec:
       project: default
       source:
@@ -21,9 +21,6 @@ spec:
         helm:
           valueFiles:
             - values.yaml
-            - environments/{{path[0]}}/values.yaml
-            - environments/{{path[0]}}/{{path[1]}}/values.yaml
-            - environments/{{path[0]}}/{{path[1]}}/{{path[2]}}/values.yaml
       destination:
         server: '{{path[1]}}'
         namespace: '{{path[2]}}'
