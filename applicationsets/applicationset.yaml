@@ -5,17 +5,17 @@ metadata:
 spec:
   generators:
     - git:
-        repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
-        revision: config
+        repoURL: https://github.com/marinkobabic/argocd.git
+        revision: master
         files:
           - path: "environments/**/config.yaml"
   template:
     metadata:
       name: '{{path[3]}}'
     spec:
-      project: dban
+      project: default
       source:
-        repoURL: https://bitbucket.ebs.crealogix.net:8443/scm/~mbab/dban-argocd-deployment.git
+        repoURL: https://github.com/marinkobabic/argocd.git
         targetRevision: HEAD
         path: 'charts/{{version}}/path[3]'
         helm:
