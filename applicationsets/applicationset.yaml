@@ -17,15 +17,12 @@ spec:
       source:
         repoURL: https://github.com/marinkobabic/argocd.git
         targetRevision: test
-        path: 'charts/{{version}}/path[3]'
+        path: 'charts/ingress-nginx/3.10.1'
         helm:
           valueFiles:
             - values.yaml
-            - environments/{{path[0]}}/values.yaml
-            - environments/{{path[0]}}/{{path[1]}}/values.yaml
-            - environments/{{path[0]}}/{{path[1]}}/{{path[2]}}/values.yaml
       destination:
-        server: '{{path[1]}}'
-        namespace: '{{path[2]}}'
+        server: 'default'
+        namespace: 'mdb'
       syncPolicy:
         automated: {}
