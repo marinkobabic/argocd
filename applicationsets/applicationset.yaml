@@ -19,6 +19,7 @@ spec:
         targetRevision: HEAD
         path: 'charts/{{version}}/{{path[3]}}'
         helm:
+          ignoreMissingValueFiles: true
           valueFiles:
             - values.yaml
       destination:
