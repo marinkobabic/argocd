@@ -22,7 +22,7 @@ spec:
           valueFiles:
             - values.yaml
       destination:
-        server: '{{path[1]}}'
+        name: '{{path[1]}}'
         namespace: '{{path[2]}}'
       syncPolicy:
         automated: {}
