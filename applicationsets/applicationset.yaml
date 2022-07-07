@@ -6,7 +6,7 @@ spec:
   generators:
     - git:
         repoURL: https://github.com/marinkobabic/argocd.git
-        revision: master
+        revision: test
         files:
           - path: "environments/**/config.yaml"
   template:
@@ -16,7 +16,7 @@ spec:
       project: default
       source:
         repoURL: https://github.com/marinkobabic/argocd.git
-        targetRevision: master
+        targetRevision: test
         path: 'charts/{{version}}/path[3]'
         helm:
           valueFiles:
