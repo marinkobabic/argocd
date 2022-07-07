@@ -22,7 +22,7 @@ spec:
           valueFiles:
             - values.yaml
       destination:
-        server: 'default'
+        server: 'in-cluster'
         namespace: 'mdb'
       syncPolicy:
         automated: {}
