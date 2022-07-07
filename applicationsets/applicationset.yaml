@@ -17,7 +17,7 @@ spec:
       source:
         repoURL: https://github.com/marinkobabic/argocd.git
         targetRevision: master
-        path: 'charts/{{version}}/{{path.basename}}'
+        path: 'charts/{{path.basename}}/{{version}}'
         helm:
           ignoreMissingValueFiles: true
           valueFiles:
